@@ -25,7 +25,5 @@
     "clean-css-brunch": "> 1.0 < 1.4"
   },
   "devDependencies": {
-    "buster": "0.5.4",
-    "jsdom": "0.2.14"
   }
 }
