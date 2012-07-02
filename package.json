@@ -1,0 +1,31 @@
+{
+  "author": "Your Name",
+  "name": "package-name",
+  "description": "Package description",
+  "version": "0.0.1",
+  "homepage": "",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "engines": {
+    "node": "~0.6.25 || 0.8 || 0.9"
+  },
+  "scripts": {
+    "start": "brunch watch --server",
+    "test": "brunch test"
+  },
+  "dependencies": {
+    "javascript-brunch": "> 1.0 < 1.4",
+    "coffee-script-brunch": "> 1.0 < 1.4",
+    "sass-brunch": "> 1.0 < 1.4",
+    "css-brunch": "> 1.0 < 1.4",
+    "jade-brunch": "> 1.0 < 1.4",
+    "uglify-js-brunch": "> 1.0 < 1.4",
+    "clean-css-brunch": "> 1.0 < 1.4"
+  },
+  "devDependencies": {
+    "buster": "0.5.4",
+    "jsdom": "0.2.14"
+  }
+}
