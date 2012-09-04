@@ -8,7 +8,7 @@
   var cache = {};
 
   var has = function(object, name) {
-    return hasOwnProperty.call(object, name);
+    return ({}).hasOwnProperty.call(object, name);
   };
 
   var expand = function(root, name) {
@@ -37,7 +37,7 @@
     return function(name) {
       var dir = dirname(path);
       var absolute = expand(dir, name);
-      return require(absolute);
+      return globals.require(absolute);
     };
   };
 
@@ -149,6 +149,18 @@ window.require.define({"views/home_view": function(exports, require, module) {
 }});
 
 window.require.define({"views/templates/home": function(exports, require, module) {
+  module.exports = function anonymous(locals, attrs, escape, rethrow, merge) {
+  attrs = attrs || jade.attrs; escape = escape || jade.escape; rethrow = rethrow || jade.rethrow; merge = merge || jade.merge;
+  var buf = [];
+  with (locals || {}) {
+  var interp;
+  buf.push('<div id="content"><h1>Brunch<img src="http://brunch.io/images/brunch.png"/></h1><h2>Welcome!</h2><ul><li><a href="http://brunch.readthedocs.org/">Documentation</a></li><li><a href="https://github.com/brunch/brunch/issues">Github Issues</a></li><li><a href="https://github.com/brunch/twitter">Twitter Example App</a></li><li><a href="https://github.com/brunch/todos">Todos Example App</a></li></ul></div>');
+  }
+  return buf.join("");
+  };
+}});
+
+window.require.define({"views/templates/index": function(exports, require, module) {
   module.exports = function anonymous(locals, attrs, escape, rethrow, merge) {
   attrs = attrs || jade.attrs; escape = escape || jade.escape; rethrow = rethrow || jade.rethrow; merge = merge || jade.merge;
   var buf = [];
