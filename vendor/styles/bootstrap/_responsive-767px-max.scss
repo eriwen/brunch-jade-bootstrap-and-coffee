@@ -15,8 +15,7 @@
   }
 
   // Update checkboxes for iOS
-  input[type="checkbox"],
-  input[type="radio"] {
+  input[type="checkbox"], input[type="radio"] {
     border: 1px solid #ccc;
   }
 
@@ -76,8 +75,7 @@
     padding-right: 20px;
   }
   // Negative indent the now static "fixed" navbar
-  .navbar-fixed-top,
-  .navbar-fixed-bottom {
+  .navbar-fixed-top, .navbar-fixed-bottom {
     margin-left: -20px;
     margin-right: -20px;
   }
@@ -112,13 +110,11 @@
     width: 100%;
   }
   // Undo negative margin on rows and thumbnails
-  .row,
-  .thumbnails {
+  .row, .thumbnails {
     margin-left: 0;
   }
   // Make all grid-sized elements block level again
-  [class*="span"],
-  .row-fluid [class*="span"] {
+  [class*="span"], .row-fluid [class*="span"] {
     float: none;
     display: block;
     width: auto;
@@ -128,20 +124,11 @@
   // FORM FIELDS
   // -----------
   // Make span* classes full width
-  .input-large,
-  .input-xlarge,
-  .input-xxlarge,
-  input[class*="span"],
-  select[class*="span"],
-  textarea[class*="span"],
-  .uneditable-input {
+  .input-large, .input-xlarge, .input-xxlarge, input[class*="span"], select[class*="span"], textarea[class*="span"], .uneditable-input {
     @include input-block-level();
   }
   // But don't let it screw up prepend/append inputs
-  .input-prepend input,
-  .input-append input,
-  .input-prepend input[class*="span"],
-  .input-append input[class*="span"] {
+  .input-prepend input, .input-append input, .input-prepend input[class*="span"], .input-append input[class*="span"] {
     display: inline-block; // redeclare so they don't wrap to new lines
     width: auto;
   }

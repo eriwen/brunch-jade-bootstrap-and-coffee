@@ -1,4 +1,4 @@
-// Forms
+// Forms.less
 // Base styles for various input types, form layouts, and states
 // -------------------------------------------------------------
 
@@ -37,17 +37,10 @@ legend {
 }
 
 // Set font for forms
-label,
-input,
-button,
-select,
-textarea {
+label, input, button, select, textarea {
   @include font-shorthand($baseFontSize, normal, $baseLineHeight); // Set size, weight, line-height here
 }
-input,
-button,
-select,
-textarea {
+input, button, select, textarea {
   font-family: $baseFontFamily; // And only set font-family here for those that need it (note the missing label element)
 }
 
@@ -61,23 +54,9 @@ label {
 // -------------------------
 
 // Shared size and type resets
-select,
-textarea,
-input[type="text"],
-input[type="password"],
-input[type="datetime"],
-input[type="datetime-local"],
-input[type="date"],
-input[type="month"],
-input[type="time"],
-input[type="week"],
-input[type="number"],
-input[type="email"],
-input[type="url"],
-input[type="search"],
-input[type="tel"],
-input[type="color"],
-.uneditable-input {
+select, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"],
+input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"],
+input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
   display: inline-block;
   height: $baseLineHeight;
   padding: 4px;
@@ -89,8 +68,7 @@ input[type="color"],
 
 // Reset appearance properties for textual inputs and textarea
 // Declare width for legacy (can't be on input[type=*] selectors or it's too specific)
-input,
-textarea {
+input, textarea {
   width: 210px;
 }
 // Reset height since textareas have rows
@@ -98,22 +76,9 @@ textarea {
   height: auto;
 }
 // Everything else
-textarea,
-input[type="text"],
-input[type="password"],
-input[type="datetime"],
-input[type="datetime-local"],
-input[type="date"],
-input[type="month"],
-input[type="time"],
-input[type="week"],
-input[type="number"],
-input[type="email"],
-input[type="url"],
-input[type="search"],
-input[type="tel"],
-input[type="color"],
-.uneditable-input {
+textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"],
+input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"],
+input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input {
   background-color: $inputBackground;
   border: 1px solid $inputBorder;
   @include border-radius($inputBorderRadius);
@@ -130,8 +95,7 @@ input[type="color"],
 }
 
 // Position radios and checkboxes better
-input[type="radio"],
-input[type="checkbox"] {
+input[type="radio"], input[type="checkbox"] {
   margin: 3px 0;
   *margin-top: 0; /* IE7 */
   line-height: normal;
@@ -139,11 +103,7 @@ input[type="checkbox"] {
 }
 
 // Reset width of input buttons, radios, checkboxes
-input[type="submit"],
-input[type="reset"],
-input[type="button"],
-input[type="radio"],
-input[type="checkbox"] {
+input[type="submit"], input[type="reset"], input[type="button"], input[type="radio"], input[type="checkbox"] {
   width: auto; // Override of generic input selector
 }
 
@@ -154,8 +114,7 @@ input[type="checkbox"] {
 }
 
 // Set the height of select and file controls to match text inputs
-select,
-input[type="file"] {
+select, input[type="file"] {
   height: 28px; /* In IE7, the height of the select element cannot be changed by height, only font-size */
   *margin-top: 4px; /* For IE7, add top margin to align select with labels */
   line-height: 28px;
@@ -168,16 +127,12 @@ select {
 }
 
 // Make multiple select elements height not fixed
-select[multiple],
-select[size] {
+select[multiple], select[size] {
   height: auto;
 }
 
 // Focus for select, file, radio, and checkbox
-select:focus,
-input[type="file"]:focus,
-input[type="radio"]:focus,
-input[type="checkbox"]:focus {
+select:focus, input[type="file"]:focus, input[type="radio"]:focus, input[type="checkbox"]:focus {
   @include tab-focus();
 }
 
@@ -187,34 +142,29 @@ input[type="checkbox"]:focus {
 // -------------------
 
 // Indent the labels to position radios/checkboxes as hanging
-.radio,
-.checkbox {
+.radio, .checkbox {
   min-height: 18px; // clear the floating input if there is no label text
   padding-left: 18px;
 }
-.radio input[type="radio"],
-.checkbox input[type="checkbox"] {
+.radio input[type="radio"], .checkbox input[type="checkbox"] {
   float: left;
   margin-left: -18px;
 }
 
 // Move the options list down to align with labels
-.controls > .radio:first-child,
-.controls > .checkbox:first-child {
+.controls > .radio:first-child, .controls > .checkbox:first-child {
   padding-top: 5px; // has to be padding because margin collaspes
 }
 
 // Radios and checkboxes on same line
 // TODO v3: Convert .inline to .control-inline
-.radio.inline,
-.checkbox.inline {
+.radio.inline, .checkbox.inline {
   display: inline-block;
   padding-top: 5px;
   margin-bottom: 0;
   vertical-align: middle;
 }
-.radio.inline + .radio.inline,
-.checkbox.inline + .checkbox.inline {
+.radio.inline + .radio.inline, .checkbox.inline + .checkbox.inline {
   margin-left: 10px; // space out consecutive inline controls
 }
 
@@ -232,25 +182,15 @@ input[type="checkbox"]:focus {
 .input-xxlarge    { width: 530px; }
 
 // Grid style input sizes
-input[class*="span"],
-select[class*="span"],
-textarea[class*="span"],
-.uneditable-input[class*="span"],
+input[class*="span"], select[class*="span"], textarea[class*="span"], .uneditable-input[class*="span"],
 // Redeclare since the fluid row class is more specific
-.row-fluid input[class*="span"],
-.row-fluid select[class*="span"],
-.row-fluid textarea[class*="span"],
-.row-fluid .uneditable-input[class*="span"] {
+.row-fluid input[class*="span"], .row-fluid select[class*="span"], .row-fluid textarea[class*="span"], .row-fluid .uneditable-input[class*="span"] {
   float: none;
   margin-left: 0;
 }
 // Ensure input-prepend/append never wraps
-.input-append input[class*="span"],
-.input-append .uneditable-input[class*="span"],
-.input-prepend input[class*="span"],
-.input-prepend .uneditable-input[class*="span"],
-.row-fluid .input-prepend [class*="span"],
-.row-fluid .input-append [class*="span"] {
+.input-append input[class*="span"], .input-append .uneditable-input[class*="span"], .input-prepend input[class*="span"],
+.input-prepend .uneditable-input[class*="span"], .row-fluid .input-prepend [class*="span"], .row-fluid .input-append [class*="span"] {
   display: inline-block;
 }
 
@@ -259,7 +199,7 @@ textarea[class*="span"],
 // GRID SIZING FOR INPUTS
 // ----------------------
 
-@include grid-input($gridColumnWidth, $gridGutterWidth);
+@include gridInput($gridColumnWidth, $gridGutterWidth);
 
 
 
@@ -267,21 +207,13 @@ textarea[class*="span"],
 // --------------
 
 // Disabled and read-only inputs
-input[disabled],
-select[disabled],
-textarea[disabled],
-input[readonly],
-select[readonly],
-textarea[readonly] {
+input[disabled], select[disabled], textarea[disabled], input[readonly], select[readonly], textarea[readonly] {
   cursor: not-allowed;
   background-color: $inputDisabledBackground;
   border-color: #ddd;
 }
 // Explicitly reset the colors here
-input[type="radio"][disabled],
-input[type="checkbox"][disabled],
-input[type="radio"][readonly],
-input[type="checkbox"][readonly] {
+input[type="radio"][disabled], input[type="checkbox"][disabled], input[type="radio"][readonly], input[type="checkbox"][readonly] {
   background-color: transparent;
 }
 
@@ -306,9 +238,7 @@ input[type="checkbox"][readonly] {
 
 // HTML5 invalid states
 // Shares styles with the .control-group.error above
-input:focus:required:invalid,
-textarea:focus:required:invalid,
-select:focus:required:invalid {
+input:focus:required:invalid, textarea:focus:required:invalid, select:focus:required:invalid {
   color: #b94a48;
   border-color: #ee5f5b;
   &:focus {
@@ -342,15 +272,15 @@ select:focus:required:invalid {
 }
 
 // Placeholder text gets special styles; can't be bundled together though for some reason
-@include placeholder();
+// (sass-edit) - need special mixin
+@include rootPlaceholder();
 
 
 
 // HELP TEXT
 // ---------
 
-.help-block,
-.help-inline {
+.help-block, .help-inline {
   color: $gray; // lighten the text some for contrast
 }
 
@@ -372,12 +302,9 @@ select:focus:required:invalid {
 // ------------
 
 // Allow us to put symbols and text within the input field for a cleaner look
-.input-prepend,
-.input-append {
+.input-prepend, .input-append {
   margin-bottom: 5px;
-  input,
-  select,
-  .uneditable-input {
+  input, select, .uneditable-input {
     position: relative; // placed here by default so that on :focus we can place the input above the .add-on for full border and box-shadow goodness
     margin-bottom: 0; // prevent bottom margin from screwing up alignment in stacked forms
     *margin-left: 0;
@@ -405,8 +332,7 @@ select:focus:required:invalid {
     background-color: $grayLighter;
     border: 1px solid #ccc;
   }
-  .add-on,
-  .btn {
+  .add-on, .btn {
     margin-left: -1px;
     @include border-radius(0);
   }
@@ -416,44 +342,35 @@ select:focus:required:invalid {
   }
 }
 .input-prepend {
-  .add-on,
-  .btn {
+  .add-on, .btn {
     margin-right: -1px;
   }
-  .add-on:first-child,
-  .btn:first-child {
+  .add-on:first-child, .btn:first-child {
     @include border-radius($inputBorderRadius 0 0 $inputBorderRadius);
   }
 }
 .input-append {
-  input,
-  select,
-  .uneditable-input {
+  input, select, .uneditable-input {
     @include border-radius($inputBorderRadius 0 0 $inputBorderRadius);
   }
   .uneditable-input {
     border-right-color: #ccc;
     border-left-color: #eee;
   }
-  .add-on:last-child,
-  .btn:last-child {
+  .add-on:last-child, .btn:last-child {
     @include border-radius(0 $inputBorderRadius $inputBorderRadius 0);
   }
 }
 // Remove all border-radius for inputs with both prepend and append
 .input-prepend.input-append {
-  input,
-  select,
-  .uneditable-input {
+  input, select, .uneditable-input {
     @include border-radius(0);
   }
-  .add-on:first-child,
-  .btn:first-child {
+  .add-on:first-child, .btn:first-child {
     margin-right: -1px;
     @include border-radius($inputBorderRadius 0 0 $inputBorderRadius);
   }
-  .add-on:last-child,
-  .btn:last-child {
+  .add-on:last-child, .btn:last-child {
     margin-left: -1px;
     @include border-radius(0 $inputBorderRadius $inputBorderRadius 0);
   }
@@ -464,7 +381,7 @@ select:focus:required:invalid {
 // SEARCH FORM
 // -----------
 
-.search-query {
+input.search-query { // input. fix the overwriting of the search-query and allow rounded corner for the search field
   padding-right: 14px;
   padding-right: 4px \9;
   padding-left: 14px;
@@ -481,16 +398,8 @@ select:focus:required:invalid {
 // Common properties
 // -----------------
 
-.form-search,
-.form-inline,
-.form-horizontal {
-  input,
-  textarea,
-  select,
-  .help-inline,
-  .uneditable-input,
-  .input-prepend,
-  .input-append {
+.form-search, .form-inline, .form-horizontal {
+  input, textarea, select, .help-inline, .uneditable-input, .input-prepend, .input-append {
     display: inline-block;
     @include ie7-inline-block();
     margin-bottom: 0;
@@ -500,31 +409,22 @@ select:focus:required:invalid {
     display: none;
   }
 }
-.form-search label,
-.form-inline label {
+.form-search label, .form-inline label {
   display: inline-block;
 }
 // Remove margin for input-prepend/-append
-.form-search .input-append,
-.form-inline .input-append,
-.form-search .input-prepend,
-.form-inline .input-prepend {
+.form-search .input-append, .form-inline .input-append, .form-search .input-prepend, .form-inline .input-prepend {
   margin-bottom: 0;
 }
 // Inline checkbox/radio labels (remove padding on left)
-.form-search .radio,
-.form-search .checkbox,
-.form-inline .radio,
-.form-inline .checkbox {
+.form-search .radio, .form-search .checkbox, .form-inline .radio, .form-inline .checkbox {
   padding-left: 0;
   margin-bottom: 0;
   vertical-align: middle;
 }
 // Remove float and margin, set to inline-block
-.form-search .radio input[type="radio"],
-.form-search .checkbox input[type="checkbox"],
-.form-inline .radio input[type="radio"],
-.form-inline .checkbox input[type="checkbox"] {
+.form-search .radio input[type="radio"], .form-search .checkbox input[type="checkbox"],
+.form-inline .radio input[type="radio"], .form-inline .checkbox input[type="checkbox"] {
   float: left;
   margin-right: 3px;
   margin-left: 0;

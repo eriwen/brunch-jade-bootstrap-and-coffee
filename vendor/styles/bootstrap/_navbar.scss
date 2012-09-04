@@ -17,7 +17,7 @@
 // Gradient is applied to it's own element because overflow visible is not honored by IE when filter is present
 .navbar-inner {
   min-height: $navbarHeight;
-  padding-left:  20px;
+  padding-left: 20px;
   padding-right: 20px;
   @include gradient-vertical($navbarBackgroundHighlight, $navbarBackground);
   @include border-radius(4px);
@@ -69,8 +69,7 @@
     }
   }
   // Buttons in navbar
-  .btn,
-  .btn-group {
+  .btn, .btn-group {
     @include navbarVerticalAlign(30px); // Vertically center in navbar
   }
   .btn-group .btn {
@@ -82,26 +81,19 @@
 .navbar-form {
   margin-bottom: 0; // remove default bottom margin
   @include clearfix();
-  input,
-  select,
-  .radio,
-  .checkbox {
+  input, select, .radio, .checkbox {
     @include navbarVerticalAlign(30px); // Vertically center in navbar
   }
-  input,
-  select {
+  input, select {
     display: inline-block;
     margin-bottom: 0;
   }
-  input[type="image"],
-  input[type="checkbox"],
-  input[type="radio"] {
+  input[type="image"], input[type="checkbox"], input[type="radio"] {
     margin-top: 3px;
   }
-  .input-append,
-  .input-prepend {
+  .input-append, .input-prepend {
     margin-top: 6px;
-    white-space: nowrap; // preven two  items from separating within a .navbar-form that has .pull-left
+    white-space: nowrap; // prevents two items from separating within a .navbar-form that has .pull-left
     input {
       margin-top: 0; // remove the margin on top since it's on the parent
     }
@@ -124,10 +116,16 @@
     @include transition(none);
 
     @include placeholder($navbarSearchPlaceholderColor);
+    // Placeholder text gets special styles; can't be a grouped selector
+//    &:-moz-placeholder {
+//      color: $navbarSearchPlaceholderColor;
+//    }
+//    &::-webkit-input-placeholder {
+//      color: $navbarSearchPlaceholderColor;
+//    }
 
     // Focus states (we use .focused since IE7-8 and down doesn't support :focus)
-    &:focus,
-    &.focused {
+    &:focus, &.focused {
       padding: 5px 10px;
       color: $grayDark;
       text-shadow: 0 1px 0 $white;
@@ -145,35 +143,28 @@
 // ------------
 
 // Shared (top/bottom) styles
-.navbar-fixed-top,
-.navbar-fixed-bottom {
+.navbar-fixed-top, .navbar-fixed-bottom {
   position: fixed;
   right: 0;
   left: 0;
   z-index: $zindexFixedNavbar;
   margin-bottom: 0; // remove 18px margin for static navbar
 }
-.navbar-fixed-top .navbar-inner,
-.navbar-fixed-bottom .navbar-inner {
-  padding-left:  0;
+.navbar-fixed-top .navbar-inner, .navbar-fixed-bottom .navbar-inner {
+  padding-left: 0;
   padding-right: 0;
   @include border-radius(0);
 }
 
-.navbar-fixed-top .container,
-.navbar-fixed-bottom .container {
-  @include core-span($gridColumns);
+.navbar-fixed-top .container, .navbar-fixed-bottom .container {
+  @include gridCoreSpan($gridColumns, $gridColumnWidth, $gridGutterWidth);
 }
 
 // Fixed to top
-.navbar-fixed-top {
-  top: 0;
-}
+.navbar-fixed-top { top: 0; }
 
 // Fixed to bottom
-.navbar-fixed-bottom {
-  bottom: 0;
-}
+.navbar-fixed-bottom { bottom: 0; }
 
 
 
@@ -210,14 +201,14 @@
 .navbar .btn {
   display: inline-block;
   padding: 4px 10px 4px;
-  // Vertically center the button given @navbarHeight
+  // Vertically center the button given $navbarHeight
   $elementHeight: 28px;
   margin: (($navbarHeight - $elementHeight) / 2 - 1) 5px (($navbarHeight - $elementHeight) / 2);
   line-height: $baseLineHeight;
 }
 .navbar .btn-group {
   margin: 0;
-  // Vertically center the button given @navbarHeight
+  // Vertically center the button given $navbarHeight
   $elementHeight: 28px;
   padding: (($navbarHeight - $elementHeight) / 2 - 1) 5px (($navbarHeight - $elementHeight) / 2);
 }
@@ -229,8 +220,7 @@
 }
 
 // Active nav items
-.navbar .nav .active > a,
-.navbar .nav .active > a:hover {
+.navbar .nav .active > a, .navbar .nav .active > a:hover {
   color: $navbarLinkColorActive;
   text-decoration: none;
   background-color: $navbarLinkBackgroundActive;
@@ -320,19 +310,16 @@
   }
 }
 // Dropdown toggle caret
-.navbar .nav li.dropdown .dropdown-toggle .caret,
-.navbar .nav li.dropdown.open .caret {
+.navbar .nav li.dropdown .dropdown-toggle .caret, .navbar .nav li.dropdown.open .caret {
   border-top-color: $white;
   border-bottom-color: $white;
 }
 .navbar .nav li.dropdown.active .caret {
-  @include opacity(100);
+  @include opacity(1);
 }
 
 // Remove background color from open dropdown
-.navbar .nav li.dropdown.open > .dropdown-toggle,
-.navbar .nav li.dropdown.active > .dropdown-toggle,
-.navbar .nav li.dropdown.open.active > .dropdown-toggle {
+.navbar .nav li.dropdown.open > .dropdown-toggle, .navbar .nav li.dropdown.active > .dropdown-toggle, .navbar .nav li.dropdown.open.active > .dropdown-toggle {
   background-color: transparent;
 }
 
@@ -343,8 +330,7 @@
 
 // Right aligned menus need alt position
 // TODO: rejigger this at some point to simplify the selectors
-.navbar .pull-right .dropdown-menu,
-.navbar .dropdown-menu.pull-right {
+.navbar .pull-right .dropdown-menu, .navbar .dropdown-menu.pull-right {
   left: auto;
   right: 0;
   &:before {

@@ -2,16 +2,14 @@
 // --------------
 
 // Use the .menu class on any <li> element within the topbar or ul.tabs and you'll get some superfancy dropdowns
-.dropup,
-.dropdown {
+.dropup, .dropdown {
   position: relative;
 }
 .dropdown-toggle {
   // The caret makes the toggle a bit too tall in IE7
   *margin-bottom: -3px;
 }
-.dropdown-toggle:active,
-.open .dropdown-toggle {
+.dropdown-toggle:active, .open .dropdown-toggle {
   outline: 0;
 }
 
@@ -26,7 +24,7 @@
   border-right: 4px solid transparent;
   border-left:  4px solid transparent;
   content: "";
-  @include opacity(30);
+  @include opacity(0.3);
 }
 
 // Place the caret
@@ -34,9 +32,8 @@
   margin-top: 8px;
   margin-left: 2px;
 }
-.dropdown:hover .caret,
-.open .caret {
-  @include opacity(100);
+.dropdown:hover .caret, .open .caret {
+  @include opacity(1);
 }
 
 // The dropdown menu (ul)
@@ -71,7 +68,7 @@
 
   // Dividers (basically an hr) within the dropdown
   .divider {
-    @include nav-divider();
+    @include nav-divider($dropdownDividerTop, $dropdownDividerBottom);
   }
 
   // Links within the dropdown menu
@@ -88,9 +85,7 @@
 
 // Hover state
 // -----------
-.dropdown-menu li > a:hover,
-.dropdown-menu .active > a,
-.dropdown-menu .active > a:hover {
+.dropdown-menu li > a:hover, .dropdown-menu .active > a, .dropdown-menu .active > a:hover {
   color: $dropdownLinkColorHover;
   text-decoration: none;
   background-color: $dropdownLinkBackgroundHover;
@@ -103,14 +98,14 @@
   // make the menu appear below buttons that appeared later on the page
   *z-index: $zindexDropdown;
 
-  .dropdown-menu {
+  & > .dropdown-menu {
     display: block;
   }
 }
 
 // Right aligned dropdowns
 // ---------------------------
-.pull-right .dropdown-menu {
+.pull-right > .dropdown-menu {
   right: 0;
   left: auto;
 }
@@ -119,8 +114,7 @@
 // ------------------------------------------------------
 // Just add .dropup after the standard .dropdown class and you're set, bro.
 // TODO: abstract this so that the navbar fixed styles are not placed here?
-.dropup,
-.navbar-fixed-bottom .dropdown {
+.dropup, .navbar-fixed-bottom .dropdown {
   // Reverse the caret
   .caret {
     border-top: 0;

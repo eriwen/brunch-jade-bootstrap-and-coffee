@@ -33,7 +33,7 @@
   color: $grayDark;
   text-decoration: none;
   background-color: darken($white, 10%);
-  *background-color: darken($white, 15%); /* Buttons in IE7 don't get borders, so darken on hover */
+  *background-color: darken($white, 15%); // Buttons in IE7 don't get borders, so darken on hover
   background-position: 0 -15px;
 
   // transition is only when going to hover, otherwise the background
@@ -47,8 +47,7 @@
 }
 
 // Active state
-.btn.active,
-.btn:active {
+.btn.active, .btn:active {
   background-color: darken($white, 10%);
   background-color: darken($white, 15%) \9;
   background-image: none;
@@ -57,12 +56,11 @@
 }
 
 // Disabled state
-.btn.disabled,
-.btn[disabled] {
+.btn.disabled, .btn[disabled] {
   cursor: default;
   background-color: darken($white, 10%);
   background-image: none;
-  @include opacity(65);
+  @include opacity(0.65);
   @include box-shadow(none);
 }
 
@@ -104,28 +102,12 @@
 
 // Set text color
 // -------------------------
-.btn-primary,
-.btn-primary:hover,
-.btn-warning,
-.btn-warning:hover,
-.btn-danger,
-.btn-danger:hover,
-.btn-success,
-.btn-success:hover,
-.btn-info,
-.btn-info:hover,
-.btn-inverse,
-.btn-inverse:hover {
+.btn-primary, .btn-primary:hover, .btn-warning, .btn-warning:hover, .btn-danger, .btn-danger:hover, .btn-success, .btn-success:hover, .btn-info, .btn-info:hover, .btn-inverse, .btn-inverse:hover {
   color: $white;
   text-shadow: 0 -1px 0 rgba(0,0,0,.25);
 }
 // Provide *some* extra contrast for those who can get it
-.btn-primary.active,
-.btn-warning.active,
-.btn-danger.active,
-.btn-success.active,
-.btn-info.active,
-.btn-inverse.active {
+.btn-primary.active, .btn-warning.active, .btn-danger.active, .btn-success.active, .btn-info.active, .btn-inverse.active {
   color: rgba(255,255,255,.75);
 }
 
@@ -155,7 +137,6 @@
 .btn-info {
   @include buttonBackground($btnInfoBackground, $btnInfoBackgroundHighlight);
 }
-// Inverse appears as dark gray
 .btn-inverse {
   @include buttonBackground($btnInverseBackground, $btnInverseBackgroundHighlight);
 }
@@ -164,8 +145,7 @@
 // Cross-browser Jank
 // --------------------------------------------------
 
-button.btn,
-input[type="submit"].btn {
+button.btn, input[type="submit"].btn {
 
   // Firefox 3.6 only I believe
   &::-moz-focus-inner {
