@@ -1,0 +1,9 @@
+{
+  "files": [
+    {
+      "from": "template.jade.hbs",
+      "to": "app/views/templates/{{name}}.jade"
+    }
+  ],
+  "dependencies": []
+}
