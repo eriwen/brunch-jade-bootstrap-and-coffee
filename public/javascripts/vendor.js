@@ -74,6 +74,11 @@
   globals.require.brunch = true;
 })();
 
+window.brunch = window.brunch || {};
+window.brunch['auto-reload'] = {enabled: true};
+
+;
+
 /*!
  * jQuery JavaScript Library v1.8.1
  * http://jquery.com/
@@ -11871,208 +11876,6 @@ if ( typeof define === "function" && define.amd && define.amd.jQuery ) {
 }).call(this);
 ;
 
-/**
- * |-------------------|
- * | Backbone-Mediator |
- * |-------------------|
- *  Backbone-Mediator is freely distributable under the MIT license.
- *
- *  <a href="https://github.com/chalbert/Backbone-Mediator">More details & documentation</a>
- *
- * @author Nicolas Gilbert
- *
- * @requires _
- * @requires Backbone
- */
-(function(factory){
-  'use strict';
-
-  if (typeof define === 'function' && define.amd) {
-    define(['underscore', 'backbone'], factory);
-  } else {
-    factory(_, Backbone);
-  }
-
-})(function (_, Backbone){
-  'use strict';
-
-  /**
-   * @static
-   */
-  var channels = {},
-      Subscriber,
-      /** @borrows Backbone.View#delegateEvents */
-      delegateEvents = Backbone.View.prototype.delegateEvents,
-      /** @borrows Backbone.View#delegateEvents */
-      undelegateEvents = Backbone.View.prototype.undelegateEvents;
-
-  /**
-   * @class
-   */
-  Backbone.Mediator = {
-
-    /**
-     * Subscribe to a channel
-     *
-     * @param channel
-     */
-    subscribe: function(channel, subscription, context, once) {
-      if (!channels[channel]) channels[channel] = [];
-      channels[channel].push({fn: subscription, context: context || this, once: once});
-    },
-
-    /**
-     * Trigger all callbacks for a channel
-     *
-     * @param channel
-     * @params N Extra parametter to pass to handler
-     */
-    publish: function(channel) {
-      if (!channels[channel]) return;
-
-      var args = [].slice.call(arguments, 1),
-          subscription;
-
-      for (var i = 0; i < channels[channel].length; i++) {
-        subscription = channels[channel][i];
-        subscription.fn.apply(subscription.context, args);
-        if (subscription.once) {
-          Backbone.Mediator.unsubscribe(channel, subscription.fn, subscription.context);
-          i--;
-        }
-      }
-    },
-
-    /**
-     * Cancel subscription
-     *
-     * @param channel
-     * @param fn
-     * @param context
-     */
-
-    unsubscribe: function(channel, fn, context){
-      if (!channels[channel]) return;
-
-      var subscription;
-      for (var i = 0; i < channels[channel].length; i++) {
-        subscription = channels[channel][i];
-        if (subscription.fn === fn && subscription.context === context) {
-          channels[channel].splice(i, 1);
-          i--;
-        }
-      }
-    },
-
-    /**
-     * Subscribing to one event only
-     *
-     * @param channel
-     * @param subscription
-     * @param context
-     */
-    subscribeOnce: function (channel, subscription, context) {
-      Backbone.Mediator.subscribe(channel, subscription, context, true);
-    }
-
-  };
-
-  /**
-   * Allow to define convention-based subscriptions
-   * as an 'subscriptions' hash on a view. Subscriptions
-   * can then be easily setup and cleaned.
-   *
-   * @class
-   */
-
-
-  Subscriber = {
-
-    /**
-     * Extend delegateEvents() to set subscriptions
-     */
-    delegateEvents: function(){
-      delegateEvents.apply(this, arguments);
-      this.setSubscriptions();
-    },
-
-    /**
-     * Extend undelegateEvents() to unset subscriptions
-     */
-    undelegateEvents: function(){
-      undelegateEvents.apply(this, arguments);
-      this.unsetSubscriptions();
-    },
-
-    /** @property {Object} List of subscriptions, to be defined */
-    subscriptions: {},
-
-    /**
-     * Subscribe to each subscription
-     * @param {Object} [subscriptions] An optional hash of subscription to add
-     */
-
-    setSubscriptions: function(subscriptions){
-      if (subscriptions) _.extend(this.subscriptions || {}, subscriptions);
-      subscriptions = subscriptions || this.subscriptions;
-      if (!subscriptions || _.isEmpty(subscriptions)) return;
-      // Just to be sure we don't set duplicate
-      this.unsetSubscriptions(subscriptions);
-
-      _.each(subscriptions, function(subscription, channel){
-        var once;
-        if (subscription.$once) {
-          subscription = subscription.$once;
-          once = true;
-        }
-        if (_.isString(subscription)) {
-          subscription = this[subscription];
-        }
-        Backbone.Mediator.subscribe(channel, subscription, this, once);
-      }, this);
-    },
-
-    /**
-     * Unsubscribe to each subscription
-     * @param {Object} [subscriptions] An optional hash of subscription to remove
-     */
-    unsetSubscriptions: function(subscriptions){
-      subscriptions = subscriptions || this.subscriptions;
-      if (!subscriptions || _.isEmpty(subscriptions)) return;
-      _.each(subscriptions, function(subscription, channel){
-        if (_.isString(subscription)) {
-          subscription = this[subscription];
-        }
-        Backbone.Mediator.unsubscribe(channel, subscription.$once || subscription, this);
-      }, this);
-    }
-  };
-
-  /**
-   * @lends Backbone.View.prototype
-   */
-  _.extend(Backbone.View.prototype, Subscriber);
-
-  /**
-   * @lends Backbone.Mediator
-   */
-  _.extend(Backbone.Mediator, {
-    /**
-     * Shortcut for publish
-     * @function
-     */
-    pub: Backbone.Mediator.publish,
-    /**
-     * Shortcut for subscribe
-     * @function
-     */
-    sub: Backbone.Mediator.subscribe
-  });
-
-  return Backbone;
-
-});;
-
 /* ===================================================
  * bootstrap-transition.js v2.0.4
  * http://twitter.github.com/bootstrap/javascript.html#transitions
@@ -13635,6 +13438,208 @@ if ( typeof define === "function" && define.amd && define.amd.jQuery ) {
 
 }(window.jQuery);;
 
+/**
+ * |-------------------|
+ * | Backbone-Mediator |
+ * |-------------------|
+ *  Backbone-Mediator is freely distributable under the MIT license.
+ *
+ *  <a href="https://github.com/chalbert/Backbone-Mediator">More details & documentation</a>
+ *
+ * @author Nicolas Gilbert
+ *
+ * @requires _
+ * @requires Backbone
+ */
+(function(factory){
+  'use strict';
+
+  if (typeof define === 'function' && define.amd) {
+    define(['underscore', 'backbone'], factory);
+  } else {
+    factory(_, Backbone);
+  }
+
+})(function (_, Backbone){
+  'use strict';
+
+  /**
+   * @static
+   */
+  var channels = {},
+      Subscriber,
+      /** @borrows Backbone.View#delegateEvents */
+      delegateEvents = Backbone.View.prototype.delegateEvents,
+      /** @borrows Backbone.View#delegateEvents */
+      undelegateEvents = Backbone.View.prototype.undelegateEvents;
+
+  /**
+   * @class
+   */
+  Backbone.Mediator = {
+
+    /**
+     * Subscribe to a channel
+     *
+     * @param channel
+     */
+    subscribe: function(channel, subscription, context, once) {
+      if (!channels[channel]) channels[channel] = [];
+      channels[channel].push({fn: subscription, context: context || this, once: once});
+    },
+
+    /**
+     * Trigger all callbacks for a channel
+     *
+     * @param channel
+     * @params N Extra parametter to pass to handler
+     */
+    publish: function(channel) {
+      if (!channels[channel]) return;
+
+      var args = [].slice.call(arguments, 1),
+          subscription;
+
+      for (var i = 0; i < channels[channel].length; i++) {
+        subscription = channels[channel][i];
+        subscription.fn.apply(subscription.context, args);
+        if (subscription.once) {
+          Backbone.Mediator.unsubscribe(channel, subscription.fn, subscription.context);
+          i--;
+        }
+      }
+    },
+
+    /**
+     * Cancel subscription
+     *
+     * @param channel
+     * @param fn
+     * @param context
+     */
+
+    unsubscribe: function(channel, fn, context){
+      if (!channels[channel]) return;
+
+      var subscription;
+      for (var i = 0; i < channels[channel].length; i++) {
+        subscription = channels[channel][i];
+        if (subscription.fn === fn && subscription.context === context) {
+          channels[channel].splice(i, 1);
+          i--;
+        }
+      }
+    },
+
+    /**
+     * Subscribing to one event only
+     *
+     * @param channel
+     * @param subscription
+     * @param context
+     */
+    subscribeOnce: function (channel, subscription, context) {
+      Backbone.Mediator.subscribe(channel, subscription, context, true);
+    }
+
+  };
+
+  /**
+   * Allow to define convention-based subscriptions
+   * as an 'subscriptions' hash on a view. Subscriptions
+   * can then be easily setup and cleaned.
+   *
+   * @class
+   */
+
+
+  Subscriber = {
+
+    /**
+     * Extend delegateEvents() to set subscriptions
+     */
+    delegateEvents: function(){
+      delegateEvents.apply(this, arguments);
+      this.setSubscriptions();
+    },
+
+    /**
+     * Extend undelegateEvents() to unset subscriptions
+     */
+    undelegateEvents: function(){
+      undelegateEvents.apply(this, arguments);
+      this.unsetSubscriptions();
+    },
+
+    /** @property {Object} List of subscriptions, to be defined */
+    subscriptions: {},
+
+    /**
+     * Subscribe to each subscription
+     * @param {Object} [subscriptions] An optional hash of subscription to add
+     */
+
+    setSubscriptions: function(subscriptions){
+      if (subscriptions) _.extend(this.subscriptions || {}, subscriptions);
+      subscriptions = subscriptions || this.subscriptions;
+      if (!subscriptions || _.isEmpty(subscriptions)) return;
+      // Just to be sure we don't set duplicate
+      this.unsetSubscriptions(subscriptions);
+
+      _.each(subscriptions, function(subscription, channel){
+        var once;
+        if (subscription.$once) {
+          subscription = subscription.$once;
+          once = true;
+        }
+        if (_.isString(subscription)) {
+          subscription = this[subscription];
+        }
+        Backbone.Mediator.subscribe(channel, subscription, this, once);
+      }, this);
+    },
+
+    /**
+     * Unsubscribe to each subscription
+     * @param {Object} [subscriptions] An optional hash of subscription to remove
+     */
+    unsetSubscriptions: function(subscriptions){
+      subscriptions = subscriptions || this.subscriptions;
+      if (!subscriptions || _.isEmpty(subscriptions)) return;
+      _.each(subscriptions, function(subscription, channel){
+        if (_.isString(subscription)) {
+          subscription = this[subscription];
+        }
+        Backbone.Mediator.unsubscribe(channel, subscription.$once || subscription, this);
+      }, this);
+    }
+  };
+
+  /**
+   * @lends Backbone.View.prototype
+   */
+  _.extend(Backbone.View.prototype, Subscriber);
+
+  /**
+   * @lends Backbone.Mediator
+   */
+  _.extend(Backbone.Mediator, {
+    /**
+     * Shortcut for publish
+     * @function
+     */
+    pub: Backbone.Mediator.publish,
+    /**
+     * Shortcut for subscribe
+     * @function
+     */
+    sub: Backbone.Mediator.subscribe
+  });
+
+  return Backbone;
+
+});;
+
 /* =============================================================
  * bootstrap-typeahead.js v2.0.4
  * http://twitter.github.com/bootstrap/javascript.html#typeahead
@@ -13920,6 +13925,48 @@ if ( typeof define === "function" && define.amd && define.amd.jQuery ) {
   })
 
 }(window.jQuery);;
+
+(function() {
+  var WebSocket = window.WebSocket || window.MozWebSocket;
+  var br = window.brunch;
+  if (!WebSocket || !br || !br['auto-reload'] || !br['auto-reload'].enabled) return;
+
+  var cacheBuster = function(url){
+    var date = Math.round(Date.now() / 1000).toString();
+    url = url.replace(/(\&|\\?)cacheBuster=\d*/, '');
+    return url + (url.indexOf('?') >= 0 ? '&' : '?') +'cacheBuster=' + date;
+  };
+
+  var reloaders = {
+    page: function(){
+      window.location.reload(true);
+    },
+
+    stylesheet: function(){
+      [].slice
+        .call(document.querySelectorAll('link[rel="stylesheet"]'))
+        .filter(function(link){
+          return (link != null && link.href != null);
+        })
+        .forEach(function(link) {
+          link.href = cacheBuster(link.href);
+        });
+    }
+  };
+  var host = (!br['server']) ? window.location.hostname : br['server'];
+  var connection = new WebSocket('ws://' + host + ':9485');
+  connection.onmessage = function(event) {
+    var message = event.data;
+    var b = window.brunch;
+    if (!b || !b['auto-reload'] || !b['auto-reload'].enabled) return;
+    if (reloaders[message] != null) {
+      reloaders[message]();
+    } else {
+      reloaders.page();
+    }
+  };
+})();
+;
 
 
 jade = (function(exports){
