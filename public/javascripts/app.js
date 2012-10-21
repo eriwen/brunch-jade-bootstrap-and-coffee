@@ -188,20 +188,47 @@ window.require.define({"views/templates/layout": function(exports, require, modu
 }});
 
 window.require.define({"views/view": function(exports, require, module) {
-  
-  module.exports = Backbone.View.extend({
-    initialize: function() {
+  var View,
+    __bind = function(fn, me){ return function(){ return fn.apply(me, arguments); }; },
+    __hasProp = {}.hasOwnProperty,
+    __extends = function(child, parent) { for (var key in parent) { if (__hasProp.call(parent, key)) child[key] = parent[key]; } function ctor() { this.constructor = child; } ctor.prototype = parent.prototype; child.prototype = new ctor(); child.__super__ = parent.prototype; return child; };
+
+  module.exports = View = (function(_super) {
+
+    __extends(View, _super);
+
+    function View() {
+      this.afterRender = __bind(this.afterRender, this);
+
+      this.render = __bind(this.render, this);
+
+      this.getRenderData = __bind(this.getRenderData, this);
+
+      this.template = __bind(this.template, this);
+
+      this.initialize = __bind(this.initialize, this);
+      return View.__super__.constructor.apply(this, arguments);
+    }
+
+    View.prototype.initialize = function() {
       return this.render = _.bind(this.render, this);
-    },
-    template: function() {},
-    getRenderData: function() {},
-    render: function() {
+    };
+
+    View.prototype.template = function() {};
+
+    View.prototype.getRenderData = function() {};
+
+    View.prototype.render = function() {
       this.$el.html(this.template(this.getRenderData()));
       this.afterRender();
       return this;
-    },
-    afterRender: function() {}
-  });
+    };
+
+    View.prototype.afterRender = function() {};
+
+    return View;
+
+  })(Backbone.View);
   
 }});
 

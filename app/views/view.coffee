@@ -1,15 +1,15 @@
-module.exports = Backbone.View.extend(
-  initialize: ->
+module.exports = class View extends Backbone.View
+  initialize: =>
     @render = _.bind(@render, this)
 
-  template: ->
+  template: =>
 
-  getRenderData: ->
+  getRenderData: =>
 
-  render: ->
+  render: =>
     @$el.html @template(@getRenderData())
     @afterRender()
     this
 
-  afterRender: ->
-)
+  afterRender: =>
+
