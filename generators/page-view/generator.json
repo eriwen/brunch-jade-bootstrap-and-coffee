@@ -1,0 +1,9 @@
+{
+  "files": [
+    {
+      "from": "page-view.coffee.hbs",
+      "to": "app/views/{{name}}-page-view.coffee"
+    }
+  ],
+  "dependencies": []
+}

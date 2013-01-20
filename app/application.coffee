@@ -1,5 +1,5 @@
 Application = initialize: ->
-  HomeView = require('views/home_view')
+  HomeView = require('views/home-view')
   Router = require('lib/router')
   @homeView = new HomeView()
   @router = new Router()
