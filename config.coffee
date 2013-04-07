@@ -13,9 +13,9 @@ exports.config =
       order:
         before: [
           'vendor/scripts/auto-reload-brunch.js',
-          'vendor/scripts/jquery-1.9.0.js',
-          'vendor/scripts/underscore-1.4.3.js',
-          'vendor/scripts/backbone-0.9.10.js',
+          'vendor/scripts/jquery-1.9.1.js',
+          'vendor/scripts/lodash.underscore-1.1.1.min.js',
+          'vendor/scripts/backbone-1.0.0.js',
           # Twitter Bootstrap jquery plugins
           'vendor/scripts/bootstrap/bootstrap-transition.js',
           'vendor/scripts/bootstrap/bootstrap-affix.js',
