@@ -12,9 +12,9 @@ Requires Brunch 1.3+.
 
 ## Features
 * Templating with [Jade](http://jade-lang.com)
-* [Bootstrap 2.1.1](http://twitter.github.com/bootstrap/) using [SASS](http://sass-lang.com) from [Thomas McDonald's bootstrap-sass](https://github.com/thomas-mcdonald/bootstrap-sass/)
+* [Bootstrap 2.3](http://twitter.github.com/bootstrap/) using [SASS](http://sass-lang.com) from [Thomas McDonald's bootstrap-sass](https://github.com/thomas-mcdonald/bootstrap-sass/)
 * [CoffeeScript](http://coffeescript.org)
-* [Backbone 0.9.10](http://backbonejs.org) for client-side MVC and routing
+* [Backbone 1.0.0](http://backbonejs.org) for client-side MVC and routing
 
 ## License
 The MIT license.
